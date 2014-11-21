@@ -1,0 +1,14 @@
+{
+	
+	"version":"0.0.1",
+	"name":"AppItlab",
+	"description": "A package manager for AppItlab",
+	"main":"server.js",
+	"dependencies":{
+		"swig":"*",
+		"body-parser":"*",
+		"express":"*",
+		"mongoose":"*",
+		"socket.io":"*"
+	}
+}
