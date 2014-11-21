@@ -5,7 +5,7 @@ module.exports = function(){
 
 		if (!req.session) return false;
 
-		if(req.session["_id"] == idUsuario){
+		if(req.session.usuario["_id"] == idUsuario){
 			return true;
 		}
 
@@ -15,7 +15,7 @@ module.exports = function(){
 
 	this.putInSession = function(req, obj){
 		"use strict";
-		req.session = obj;
+		req.session.usuario = obj;
 
 		return true;
 	}

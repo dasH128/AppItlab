@@ -5,10 +5,10 @@ module.exports = function (app,con){
 
 	//console.log("Index");
 
-	//var userHandler = new UserHandler(app);
+	var userHandler = new UserHandler(app);
 
 	// RUTAS
-	//app.get('/login',userHandler.login);
+	app.get('/login',userHandler.login);
 	//app.post('/usuario/:usuario',sesionHandler.findById);
 	//
 

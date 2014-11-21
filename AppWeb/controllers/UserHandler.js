@@ -61,7 +61,7 @@ module.exports = function(app) {
 
 	  		console.log("antes", req.session);
 
-	  		session.putInSession(user_res);
+	  		session.putInSession(req, user_res);
 
 	  		console.log("despues", req.session);
 

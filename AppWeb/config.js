@@ -13,13 +13,11 @@ module.exports = function (app, express, express_session, cookie_parser, path, s
 	//app.use(express.json());
 	app.use(cookie_parser());
 	
-	app.use(
-		express_session(
-				{ 	secret : "appitlab", 
-					cookie: { maxAge: 1800000 }
-				}
-			)
-	);
+	app.use(express_session({ 	
+			secret : "appitlab", 
+			cookie: { maxAge: 1800000 }
+		}
+	));
 
 	app.engine('.html', cons.swig);
   	app.set('view engine', 'html');
