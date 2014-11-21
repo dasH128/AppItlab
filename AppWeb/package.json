@@ -9,6 +9,9 @@
 		"body-parser":"*",
 		"express":"*",
 		"mongoose":"*",
-		"socket.io":"*"
+		"socket.io":"*",
+		"cookie-parser":"*",
+		"express-session":"*",
+		"consolidate":"*"
 	}
 }

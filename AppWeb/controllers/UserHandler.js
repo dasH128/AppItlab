@@ -1,4 +1,5 @@
-var Logueo = require('../models/Sesion');
+var Logueo = require('../models/User'),
+	Session = require('../models/Session');
 
 	//ObjectId = require('mongoose').Types.ObjectId; 
 
@@ -7,14 +8,16 @@ var Logueo = require('../models/Sesion');
 module.exports = function(app) {
 
 	var Logueo_Class 	= new Logueo(),
-		Usuario 		= Logueo_Class.model;
+		Usuario 		= Logueo_Class.model,
+
+		session 		= new Session();
 
 	//console.log("Usuario",Usuario);
 
 	//GET all
 
 	//Get one
-	this.findById = function (req,res) {
+	this.login = function (req,res) {
 		/*Usuario.findById( req.params.usuario ,function (err, Sesion){
 			if (!err) {
 				//console.log('IF en SesionHandler: '+Sesion);
@@ -55,6 +58,12 @@ module.exports = function(app) {
 	  			deuda 		: 	user.deuda
 
 	  		}
+
+	  		console.log("antes", req.session);
+
+	  		session.putInSession(user_res);
+
+	  		console.log("despues", req.session);
 
 		  	res.send(user_res);
 

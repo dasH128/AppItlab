@@ -1,20 +1,21 @@
-var SesionHandler = require('../controllers/SesionHandler');
+var UserHandler = require('../controllers/UserHandler');
 
 module.exports = function (app,con){
 
 
-	console.log("Index");
+	//console.log("Index");
 
-	var sesionHandler = new SesionHandler(app);
+	//var userHandler = new UserHandler(app);
 
 	// RUTAS
-	app.get('/login',sesionHandler.findById);
+	//app.get('/login',userHandler.login);
 	//app.post('/usuario/:usuario',sesionHandler.findById);
 	//
 
 	//Muestra Hellow World
-	app.get('/',function (req, res){
-		res.send('hello world');
+	app.get('/', function (req, res){
+		console.log("Hello world!");
+		res.send("hellow world");
 	});
 	//
 

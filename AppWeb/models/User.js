@@ -4,7 +4,7 @@ module.exports = function(){
 		mongoose 	= require('mongoose'),
 		Schema		= mongoose.Schema;
 
-	var sesion = new Schema({
+	var user = new Schema({
 			"_id" 		: 	String,
 
   			nombres 	: 	String,
@@ -32,7 +32,7 @@ module.exports = function(){
 		a    	: Number	
 	});
 
-	this.model = mongoose.model( collection , sesion );
+	this.model = mongoose.model( collection , user );
 
 	/*mongoose.set('debug', function (collectionName, method, query, doc, options) {
 	  console.log("--------------------------------------------");
