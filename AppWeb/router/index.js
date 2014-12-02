@@ -1,5 +1,6 @@
-var UserHandler = require('../controllers/UserHandler'),
-	ContentHandler = require('../controllers/ContentHandler');
+var UserHandler 	= require('../controllers/UserHandler'),
+	ContentHandler 	= require('../controllers/ContentHandler'),
+	AdminHandler 	= require('../controllers/AdminHandler');
 
 module.exports = function (app,con){
 
@@ -7,7 +8,8 @@ module.exports = function (app,con){
 	//console.log("Index");
 
 	var userHandler = new UserHandler(app),
-		contentHandler = new ContentHandler();
+		contentHandler = new ContentHandler(),
+		adminHandler = new AdminHandler(app);
 
 	// RUTAS
 
