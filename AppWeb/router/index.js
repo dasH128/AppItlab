@@ -24,6 +24,8 @@ module.exports = function (app,con){
 
 	app.get('/session/end', userHandler.handleLogout)
 
+	app.get('/chancho', contentHandler.handleChanchoPage);
+
 	//Muestra Hellow World
 	app.get('/', contentHandler.handleMainPage);
 

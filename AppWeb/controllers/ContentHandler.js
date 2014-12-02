@@ -27,4 +27,8 @@ module.exports = function(app) {
 			res.render('login',{});
 		}
 	}
+
+	this.handleChanchoPage = function (req, res){
+		res.render('reports',{});
+	}
 }
