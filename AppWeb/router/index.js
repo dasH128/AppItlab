@@ -1,23 +1,30 @@
-var UserHandler = require('../controllers/UserHandler');
+var UserHandler = require('../controllers/UserHandler'),
+	ContentHandler = require('../controllers/ContentHandler');
 
 module.exports = function (app,con){
 
 
 	//console.log("Index");
 
-	var userHandler = new UserHandler(app);
+	var userHandler = new UserHandler(app),
+		contentHandler = new ContentHandler();
 
 	// RUTAS
-	app.get('/login',userHandler.login);
-	//app.post('/usuario/:usuario',sesionHandler.findById);
-	//
+
+	//API
+	app.get('/api/login', userHandler.APIhandleLogin);
+
+
+
+	//WebAPP
+	app.get('/login', contentHandler.handleLoginPage);
+	app.post('/login', userHandler.handleLogin);
+
+	app.get('/session/end', userHandler.handleLogout)
 
 	//Muestra Hellow World
-	app.get('/', function (req, res){
-		console.log("Hello world!");
-		res.send("hellow world");
-	});
-	//
+	app.get('/', contentHandler.handleMainPage);
+
 
 
 

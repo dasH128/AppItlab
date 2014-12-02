@@ -1,11 +1,13 @@
 module.exports = function(){
 
-	this.isInSession = function(req, idUsuario){
+	this.isInSession = function (req){
 		"use strict";
 
-		if (!req.session) return false;
+		//console.log("req.session",req.session);
 
-		if(req.session.usuario["_id"] == idUsuario){
+		if (!req.session.usuario) return false;
+
+		if(req.session.usuario["_id"]){
 			return true;
 		}
 
@@ -13,9 +15,23 @@ module.exports = function(){
 		
 	}
 
-	this.putInSession = function(req, obj){
+	this.getSession = function (req){
+
+		if (!req.session.usuario) return null
+
+		return req.session.usuario
+	}
+
+	this.endSession = function (req){
+		req.session.usuario = null;
+		req.session.destroy();
+	}
+
+	this.putInSession = function (req, obj){
 		"use strict";
 		req.session.usuario = obj;
+
+		console.log("put in session");
 
 		return true;
 	}

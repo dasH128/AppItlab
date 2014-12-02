@@ -18,6 +18,16 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href="css/pages/signin.css" rel="stylesheet" type="text/css">
 
+	<style>
+		.btn.submit{
+			margin: auto; 
+			padding: 11px;
+		}
+		.btn.submit:hover {
+			background-position: 0;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -34,11 +44,11 @@
 					<span class="icon-bar"></span>
 				</a>
 			
-				<a class="brand" href="index.html">
-					Bienvenido =)				
-				</a>		
+				
+				<img src="img/itlab.png" class="brand" style="width: 100px">
+					
 			
-				<div class="nav-collapse">
+				<!-- <div class="nav-collapse">
 					<ul class="nav pull-right">
 					
 						<li class="">						
@@ -57,7 +67,7 @@
 						</li>
 					</ul>
 				
-				</div><!--/.nav-collapse -->	
+				</div> -->
 	
 			</div> <!-- /container -->
 		
@@ -72,32 +82,41 @@
 		<div class="content clearfix">
 			<!-- form action="http://www.aprenderaprogramar.com/prog/newuser" method ="get" -->
 			<!-- <form action="#" method="post"> -->
-			<form action="http://localhost/login" method="get">
+			<form action="login" method="POST">
 			
-				<div class="login-fields">
-					<img src="./img/uchiha.png" alt="..." class=" img-responsive img-circle" alt="Responsive-image" style="width: 100%;height: auto;">
+				<div class="login-fields" style="text-align: center">
+					<img src="./img/uchiha.png" alt="..." class=" img-responsive img-circle" alt="Responsive-image" style="width: 50%; height: auto; margin: auto">
 	    
 				</div >
 
-				<h1>Member Login</h1>		
+				<h1>Login de miembros</h1>
 				
 				<div class="login-fields">
 					
-					<p>Please provide your details</p>
+					<p>Complete sus datos por favor</p>
+					
+					{% if error %}
+						<div class="alert alert-danger" role="alert" style="text-align: center">
+						  <strong><span class="sr-only">{{error}}</span></strong>
+						</div>
+					{% endif %}
 					
 					<div class="field">
-						<label for="username">Username</label>
-						<input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" style="height: 40px; margin: auto"/>
+						<label for="username">Usuario</label>
+						<input type="text" id="username" name="username" value="" placeholder="Usuario" class="login username-field" style="height: 40px; margin: auto"/>
 					</div> <!-- /field -->
 					
 					<div class="field">
 						<label for="clave">Password:</label>
-						<input type="clave" id="password" name="clave" value="" placeholder="Password" class="login password-field" style="height: 40px; margin: auto"/>
+						<input type="password" id="password" name="clave" value="" placeholder="Password" class="login password-field" style="height: 40px; margin: auto"/>
 					</div> <!-- /password -->
+
+						<input type="submit" class="btn btn-lg submit" value="Ingresar">
+
 					
 				</div> <!-- /login-fields -->
 				
-				<div class="login-actions">
+				<!-- <div class="login-actions">
 					
 					<span class="login-checkbox">
 						<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
@@ -106,7 +125,7 @@
 										
 					<button type="submit" location='index.html' class="button btn btn-success btn-large">Sign In</button>
 					
-				</div> <!-- .actions -->
+				</div> -->
 				
 				
 				
@@ -118,9 +137,9 @@
 
 
 
-	<div class="login-extra">
+	<!-- <div class="login-extra">
 		<a href="#">Reset Password</a>
-	</div> <!-- /login-extra -->
+	</div> -->
 
 
 	<script src="js/jquery-1.7.2.min.js"></script>

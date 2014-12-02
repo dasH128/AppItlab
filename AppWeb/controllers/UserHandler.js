@@ -12,98 +12,91 @@ module.exports = function(app) {
 
 		session 		= new Session();
 
+	var login = function (req, json, callback_yes, callback_no){
+
+		Usuario.findOne(json, function (err, user){
+			if (err) return console.error(err);
+
+			//delete user.password;
+			//console.log("user",user);
+
+			if(user){
+				
+				var user_res = {
+					"_id" 		: 	user._id,
+
+					nombres 	: 	user.nombres,
+					apellidos 	: 	user.apellidos,
+					apodo 		: 	user.apodo,
+					admin 		: 	user.admin,
+					estado 		: 	user.estado,
+
+					nacimiento 	: 	user.nacimiento,
+					horario 	: 	user.horario,
+					horas 		: 	user.horas,
+					deuda 		: 	user.deuda
+
+				}
+
+				if (callback_yes) callback_yes(user_res);
+
+				return user_res;
+
+			}else{
+
+				if (callback_no) callback_no();
+
+				return null;
+			}
+		})
+	}
 	//console.log("Usuario",Usuario);
 
 	//GET all
 
 	//Get one
-	this.login = function (req,res) {
-		/*Usuario.findById( req.params.usuario ,function (err, Sesion){
-			if (!err) {
-				//console.log('IF en SesionHandler: '+Sesion);
-				res.send(Sesion);
-			}else{
-				console.log('ERROR en SesionHandler: '+err);
-			}
-		});*/
+	this.APIhandleLogin = function (req, res) {
+ 		
 
 		var username = req.query.username,
 			clave = req.query.clave;
 
-		console.log("user",username);
-		console.log("clave",clave);
-
-
-		Usuario.findOne({ _id : username, clave : clave }, function (err, user) {
-		  
-		  if (err) return console.error(err);
-
-		  //delete user.password;
-		  console.log("user",user);
-
-		  if(user){
-		  	
-	  		var user_res = {
-	  			"_id" 		: 	user._id,
-
-	  			nombres 	: 	user.nombres,
-	  			apellidos 	: 	user.apellidos,
-	  			apodo 		: 	user.apodo,
-	  			rol 		: 	user.rol,
-	  			estado 		: 	user.estado,
-
-	  			nacimiento 	: 	user.nacimiento,
-	  			horario 	: 	user.horario,
-	  			horas 		: 	user.horas,
-	  			deuda 		: 	user.deuda
-
-	  		}
-
-	  		console.log("antes", req.session);
-
-	  		session.putInSession(req, user_res);
-
-	  		console.log("despues", req.session);
-
-		  	res.send(user_res);
-
-		  }else{
-		  	res.send("null");
-		  }
-
-		  
+		var user = login(req, { _id : username, clave : clave }, function (user){
+			res.send(user);
+		},function(){
+			res.send(null);
 		});
+
+
 	}
-	/*
-	this.LoginUsuario= function(req,res){
-		var username=req.body.username;
-		var password = req.body.password;
 
+	this.handleLogin = function (req, res){
+		var username = req.body.username,
+			clave = req.body.clave;
 
-		models.Usuario.findOne(	{$and:[{username:username},{password:password}]},
-								{},
-								function(err,data){
-								if(!err && data)
-								{
-									res.send("ok");
-								}else
-								{
-									res.send("err");
-								}
+		//console.log({ _id : username, clave : clave })
+
+		var user = login(req, { _id : username, clave : clave }, function (user){
+			console.log("user", user)
+			if(!user.estado){
+				res.render('login', {error: "Esta cuenta está deshabilitada"});
+			}else if(user.admin){
+				session.putInSession(req, user);
+				res.redirect('/');
+			}else{
+				res.render('login', {error: "Esta cuenta no tiene permisos de administrador"});
+			}
+			
+		},function(){
+			res.render('login', {error: "El usuario o contraseña son incorrectos"});
 		});
-	}
-	*/
-
-	//
-
-
-/*	//POST
-	var addUsuario = function(req,res){
-
 
 	}
-	///
-*/
+
+	this.handleLogout = function (req, res){
+		session.endSession(req);
+		res.redirect('/');
+	}
 
 
 }

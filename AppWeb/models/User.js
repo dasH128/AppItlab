@@ -10,7 +10,7 @@ module.exports = function(){
   			nombres 	: 	String,
   			apellidos 	: 	String,
   			apodo 		: 	String,
-  			rol 		: 	Boolean,
+  			admin 		: 	Boolean,
   			estado 		: 	Boolean,
 
   			nacimiento 	: 	Date,
